@@ -66,6 +66,7 @@ public class Main2Activity extends AppCompatActivity {
                 .addAction(R.drawable.lesson9_popup_menu, getString(R.string.firstAction), pendingIntent)
                 .addAction(R.drawable.lesson10, getString(R.string.second_action), pendingIntent)
                 .addAction(R.drawable.lesson11, getString(R.string.thread_action), pendingIntent)
+                .setContentIntent(PendingIntent.getActivity(this, 0, new Intent(this, Main2Activity.class), PendingIntent.FLAG_CANCEL_CURRENT))
                 .setAutoCancel(true);
 
 
@@ -83,6 +84,7 @@ public class Main2Activity extends AppCompatActivity {
                 .setSmallIcon(R.drawable.sherlock)
                 .setStyle(bigTextStyle)
                 .setWhen(System.currentTimeMillis())
+                .setContentIntent(PendingIntent.getActivity(this, 0, new Intent(this, Main2Activity.class), PendingIntent.FLAG_CANCEL_CURRENT))
                 .addAction(R.drawable.lesson10, getString(R.string.firstAction), pendingIntent)
                 .setAutoCancel(true);
 
@@ -102,6 +104,7 @@ public class Main2Activity extends AppCompatActivity {
                 .setSmallIcon(R.drawable.large)
                 .setStyle(bigPictureStyle)
                 .addAction(R.drawable.lesson10, getString(R.string.launch_activity), pendingIntent)
+                .setContentIntent(PendingIntent.getActivity(this, 0, new Intent(this, Main2Activity.class), PendingIntent.FLAG_CANCEL_CURRENT))
                 .setAutoCancel(true);
 
         manager.notify(NOTIFY_ID3,builder.build());
@@ -120,8 +123,14 @@ public class Main2Activity extends AppCompatActivity {
                 .setSmallIcon(R.drawable.lesson9_popup_menu)
                 .setStyle(inboxStyle)
                 .addAction(R.drawable.lesson10, getString(R.string.launch_activity), pendingIntent)
+                .setContentIntent(PendingIntent.getActivity(this, 0, new Intent(this, Main2Activity.class), PendingIntent.FLAG_CANCEL_CURRENT))
                 .setAutoCancel(true);
         manager.notify(NOTIFY_ID4,builder.build());
     }
 
+    @Override
+    protected void onStop() {
+        manager.cancelAll();
+        super.onStop();
+    }
 }
